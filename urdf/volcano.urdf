@@ -1,0 +1,220 @@
+"
+
+<?xml version="1.0"?>n
+
+<robot name="robot"
+    xmlns:xacro="http://ros.org/wiki/xacro"
+  >n  
+    
+    <link name="base_link">n    
+        
+        <visual>n      
+            
+            <geometry>n        
+                
+                <box size="
+  0.5 0.15 0.5"/>n      
+            
+            </geometry>n    
+        
+        </visual>n    
+        
+        <collision>n      
+            
+            <geometry>n
+          
+                
+                <box size="0.5 0.15 0.5"/>n      
+            
+            </geometry>n    
+        
+        </collision>n  
+    
+    </link>n
+    
+    
+    <link name="appearance_376">n  </link>n  
+    
+    <joint name="base_link_appearance_376_joint"
+   type="fixed">n    
+        
+        <parent link="base_link"/>n    
+        
+        <child link="appearance_376"
+  />n    
+        
+        <origin xyz="0 0 0" rpy="0 0 0"/>n  
+    
+    </joint>n  
+    
+    <link name="appearance_372"
+  >n  </link>n  
+    
+    <joint name="base_link_appearance_372_joint" type="fixed">n
+      
+        
+        <parent link="base_link"/>n    
+        
+        <child link="appearance_372"/>n    
+        
+        <origin
+   xyz="0 0 0" rpy="0 0 0"/>n  
+    
+    </joint>n  
+    
+    <joint name="left_motor" type="
+  continuous">n    
+        
+        <parent link="base_link"/>n    
+        
+        <child link="solid"/>n 
+     
+        
+        <axis xyz="0.00037845763 -0.999999 0.0013899751"/>n    
+        
+        <limit effort="10"
+   velocity="10"/>n    
+        
+        <origin xyz="0.30999976 0.0006174245 0.00021461793" rpy="
+  0.0011929091 0.48007777 -1.571223"/>n  
+    
+    </joint>n  
+    
+    <link name="solid">n  </link>n
+    
+    
+    <link name="appearance_366">n  </link>n  
+    
+    <joint name="solid_appearance_366_joint"
+   type="fixed">n    
+        
+        <parent link="solid"/>n    
+        
+        <child link="appearance_366"
+  />n    
+        
+        <origin xyz="0 0 0" rpy="0 0 0"/>n  
+    
+    </joint>n  
+    
+    <joint name="right_motor"
+   type="continuous">n    
+        
+        <parent link="base_link"/>n    
+        
+        <child link="solid(1)"
+  />n    
+        
+        <axis xyz="-0.00082758063 0.999977 -0.0067322557"/>n    
+        
+        <limit effort="
+  10" velocity="10"/>n    
+        
+        <origin xyz="-0.31000027 -0.00246036 0.00078676495"
+   rpy="-3.1340935 0.7473602 -1.569668"/>n  
+    
+    </joint>n  
+    
+    <link name="solid(1)"
+  >n  </link>n  
+    
+    <link name="appearance_356">n  </link>n  
+    
+    <joint name="solid(1)_appearance_356_joint"
+   type="fixed">n    
+        
+        <parent link="solid(1)"/>n    
+        
+        <child link="appearance_356"
+  />n    
+        
+        <origin xyz="0 0 0" rpy="0 0 0"/>n  
+    
+    </joint>n  
+    
+    <joint name="hingejoint_342"
+   type="continuous">n    
+        
+        <parent link="base_link"/>n    
+        
+        <child link="solid(2)"
+  />n    
+        
+        <axis xyz="-0.17063834 -0.0007077488 0.9853335"/>n    
+        
+        <origin xyz="
+  0.000133564 -0.100248836 -0.2292692" rpy="1.2241664 -1.0985714 1.9553413"/>n
+    
+    
+    </joint>n  
+    
+    <link name="solid(2)">n  </link>n  
+    
+    <link name="appearance_346"
+  >n  </link>n  
+    
+    <joint name="solid(2)_appearance_346_joint" type="fixed">n
+      
+        
+        <parent link="solid(2)"/>n    
+        
+        <child link="appearance_346"/>n    
+        
+        <origin
+   xyz="0 0 0" rpy="0 0 0"/>n  
+    
+    </joint>n  
+    
+    <joint name="hingejoint_333" type="
+  continuous">n    
+        
+        <parent link="base_link"/>n    
+        
+        <child link="solid(3)"/>n
+      
+        
+        <axis xyz="-0.29611623 -0.0032594102 -0.9551464"/>n    
+        
+        <origin xyz="-4.51707e-05
+   -0.10072148 0.22741094" rpy="1.268855 0.7700232 -1.9959698"/>n  
+    
+    </joint>n
+    
+    
+    <link name="solid(3)">n  </link>n  
+    
+    <link name="appearance_337">n  </link>n
+    
+    
+    <joint name="solid(3)_appearance_337_joint" type="fixed">n    
+        
+        <parent link="
+  solid(3)"/>n    
+        
+        <child link="appearance_337"/>n    
+        
+        <origin xyz="0 0 0" rpy="
+  0 0 0"/>n  
+    
+    </joint>n  
+    
+    <joint name="lidar_motor" type="continuous">n    
+        
+        <parent
+   link="base_link"/>n    
+        
+        <child link="Sick LMS 291"/>n    
+        
+        <axis xyz="0 2
+   0"/>n    
+        
+        <limit effort="10" velocity="10"/>n    
+        
+        <origin xyz="0 0.2 0"
+   rpy="0 0 0"/>n  
+    
+    </joint>n  
+    
+    <link name="Sick LMS 291">n  </link>n
+
+</robot>n"

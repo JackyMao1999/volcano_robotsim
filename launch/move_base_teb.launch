@@ -1,0 +1,22 @@
+<launch>
+
+  <!-- move_base 导航 -->>
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find volcano_robotsim)/config/teb/diff_drive/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find volcano_robotsim)/config/teb/diff_drive/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find volcano_robotsim)/config/teb/diff_drive/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find volcano_robotsim)/config/teb/diff_drive/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find volcano_robotsim)/config/teb/diff_drive/teb_local_planner_params.yaml" command="load" />
+    
+    <rosparam file="$(find volcano_robotsim)/config/teb/diff_drive/costmap_converter_params.yaml" command="load" /> 
+
+    <remap from="cmd_vel" to="cmd_vel"/>
+    <remap from="odom" to="odom"/>
+    <remap from="scan" to="volcano/Sick_LMS_291/laser_scan/layer0"/>
+
+    <param name="base_global_planner" type="string" value="navfn/NavfnROS" />
+    <param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS"/>
+  </node>
+
+  
+</launch>

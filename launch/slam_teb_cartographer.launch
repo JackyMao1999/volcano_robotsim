@@ -1,0 +1,29 @@
+<launch>
+
+  <!-- bringup -->
+  <node name="volcano_cartographer_bringup" pkg="volcano_robotsim" type="volcano_cartographer_bringup" />
+  
+  <!-- Run the RVIZ -->
+  <!-- <arg name="model" />
+  <arg name="gui" default="false" />
+  <param name="robot_description" textfile="$(find volcano_robotsim)/rviz/model.urdf" />
+  <param name="use_gui" value="$(arg gui)" />
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />  -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find volcano_robotsim)/rviz/volcano_cartographer.rviz" /> 
+
+  <!-- Cartographer 建图 -->
+  <param name="/use_sim_time" value="false" />
+  <node name="cartographer_node" pkg="cartographer_ros"
+      type="cartographer_node" args="
+          -configuration_directory $(find cartographer_ros)/configuration_files
+          -configuration_basename revo_lds.lua"
+      output="screen" >
+    <remap from="scan" to="volcano/Sick_LMS_291/laser_scan/layer0" />
+  </node>
+
+  <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros"
+      type="cartographer_occupancy_grid_node" args="-resolution 0.05" />
+    
+  <include file="$(find volcano_robotsim)/launch/move_base_teb.launch"/>
+</launch>
