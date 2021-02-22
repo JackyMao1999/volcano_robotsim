@@ -1,14 +1,15 @@
 <launch>
 
   <!-- bringup -->
-  <node name="volcano_base_bringup" pkg="volcano_robotsim" type="volcano_base_bringup" />
+  <node name="volcano_gmapping_bringup" pkg="volcano_robotsim" type="volcano_gmapping_bringup" />
+
   <!-- Run the RVIZ -->
-  <arg name="model" />
+  <!-- <arg name="model" />
   <arg name="gui" default="false" />
   <param name="robot_description" textfile="$(find volcano_robotsim)/rviz/model.urdf" />
   <param name="use_gui" value="$(arg gui)" />
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" /> -->
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find volcano_robotsim)/rviz/volcano_base.rviz" />
   
   <!-- Gmapping建图算法，接收传感器数据建立地图 -->

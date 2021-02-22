@@ -1,8 +1,8 @@
 <launch>
 
   <!-- bringup -->
-  <!-- <node name="volcano_cartographer_bringup" pkg="volcano_robotsim" type="volcano_cartographer_bringup" /> -->
-  
+  <node name="volcano_cartographer_bringup" pkg="volcano_robotsim" type="volcano_cartographer_bringup" />
+
   <!-- Run the RVIZ -->
   <!-- <arg name="model" />
   <arg name="gui" default="false" />
@@ -13,10 +13,10 @@
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find volcano_robotsim)/rviz/volcano_cartographer.rviz" /> 
 
   <!-- Cartographer  -->
-  <param name="/use_sim_time" value="false" />
+  <param name="/use_sim_time" value="true" />
   <node name="cartographer_node" pkg="cartographer_ros"
       type="cartographer_node" args="
-          -configuration_directory $(find cartographer_ros)/configuration_files
+          -configuration_directory $(find volcano_robotsim)/config
           -configuration_basename revo_lds.lua"
       output="screen" >
     <remap from="scan" to="volcano/Sick_LMS_291/laser_scan/layer0" />
