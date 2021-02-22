@@ -1,7 +1,14 @@
+/************************************************* 
+Copyright:Volcano Robot 
+Author: 锡城筱凯
+Date:2021-02-04 
+Blog：https://blog.csdn.net/xiaokai1999
+Description:跑gmapping建图时的传感器启动文件
+**************************************************/  
 #include <sensor_msgs/Image.h>
 #include <sensor_msgs/Imu.h>
 #include <sensor_msgs/LaserScan.h>
-#include <sensor_msgs/NavSatFix.h>
+#include <geometry_msgs/PointStamped.h>
 #include <nav_msgs/Odometry.h>
 #include <signal.h>
 #include <std_msgs/String.h>
@@ -18,10 +25,6 @@
 using namespace std;
 
 #define TIME_STEP 32    //时钟
-// #define MAX_SPEED 6.4
-// #define OBSTACLE_THRESHOLD 0.1
-// #define DECREASE_FACTOR 0.9
-// #define BACK_SLOWDOWN 0.9
 ros::NodeHandle *n;
 
 static int controllerCount;
@@ -30,13 +33,8 @@ static std::vector<std::string> controllerList;
 ros::ServiceClient timeStepClient;          //时钟通讯客户端
 webots_ros::set_int timeStepSrv;            //时钟服务数据
 
-// static std::vector<float> lidarValues;
-
-double GPSvalues[3];
+double GPSvalues[2];
 double Inertialvalues[4];
-// double accvalues[3];
-// double gyrovalues[3];
-
 
 /*******************************************************
 * Function name ：controllerNameCallback
@@ -72,15 +70,12 @@ void broadcastTransform()
 {
     static tf::TransformBroadcaster br;
     tf::Transform transform;
-    transform.setOrigin(tf::Vector3(-GPSvalues[2],GPSvalues[0],GPSvalues[1]));
-    tf::Quaternion q(Inertialvalues[0],Inertialvalues[1],Inertialvalues[2],Inertialvalues[3]);
-    q = q.inverse();
+    transform.setOrigin(tf::Vector3(GPSvalues[0],GPSvalues[1],0));
+    tf::Quaternion q(Inertialvalues[0],Inertialvalues[2],Inertialvalues[1],-Inertialvalues[3]);
     transform.setRotation(q);
     br.sendTransform(tf::StampedTransform(transform,ros::Time::now(),"odom","base_link"));
     transform.setIdentity();
     br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "base_link", "volcano/Sick_LMS_291"));
-    // br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "base_link", "volcano/inertial_unit"));
-    // br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "base_link", "volcano/gps"));
 }
 
 
@@ -93,36 +88,12 @@ void InertialUnitCallback(const sensor_msgs::Imu::ConstPtr &value)
     Inertialvalues[3] = value->orientation.w;
     broadcastTransform();
 }
-void GPSCallback(const sensor_msgs::NavSatFix::ConstPtr &value)
+void GPSCallback(const geometry_msgs::PointStamped::ConstPtr &value)
 {
-    GPSvalues[0] = value->latitude;
-    GPSvalues[1] = value->altitude;
-    GPSvalues[2] = value->longitude;
+    GPSvalues[0] = value->point.x;
+    GPSvalues[1] = value->point.z;
     broadcastTransform();  
 }
-// void GPSspeedCallback(const webots_ros::Float64Stamped::ConstPtr &value)
-// {
-//     liner_speed = value->data;
-
-// }
-
-// void AccCallback(const sensor_msgs::Imu::ConstPtr &value)
-// {
-    
-//     accvalues[0] = value->linear_acceleration.x;
-//     accvalues[1] = value->linear_acceleration.y;
-//     accvalues[2] = value->linear_acceleration.z;
-    
-//     send_odom_data();
-// }
-// void gyroCallback(const sensor_msgs::Imu::ConstPtr &value)
-// {
-//     gyrovalues[0] = value->angular_velocity.x;
-//     gyrovalues[1] = value->angular_velocity.y;
-//     gyrovalues[2] = value->angular_velocity.z;
-
-//     send_odom_data();
-// }
 
 int main(int argc,char **argv)
 {
@@ -170,11 +141,6 @@ int main(int argc,char **argv)
     lidar_srv.request.value = TIME_STEP;
     if (set_lidar_client.call(lidar_srv) && lidar_srv.response.success) {
         ROS_INFO("Lidar enabled.");
-        // sub_lidar_scan = n->subscribe("volcano/Sick_LMS_291/laser_scan/layer0", 10, lidarCallback);
-        // ROS_INFO("Topic for lidar initialized.");
-        // while (sub_lidar_scan.getNumPublishers() == 0) {
-        // }
-        // ROS_INFO("Topic for lidar scan connected.");
     } else {
         if (!lidar_srv.response.success)
         ROS_ERROR("Sampling period is not valid.");
@@ -209,7 +175,7 @@ int main(int argc,char **argv)
     set_inertial_unit_client = n->serviceClient<webots_ros::set_int>("volcano/inertial_unit/enable");
     inertial_unit_srv.request.value = TIME_STEP;
     if (set_inertial_unit_client.call(inertial_unit_srv) && inertial_unit_srv.response.success) {
-        sub_inertial_unit = n->subscribe("volcano/inertial_unit/roll_pitch_yaw", 1, InertialUnitCallback);
+        sub_inertial_unit = n->subscribe("volcano/inertial_unit/quaternion", 1, InertialUnitCallback);
         while (sub_inertial_unit.getNumPublishers() == 0) {
         }
         ROS_INFO("Inertial unit enabled.");
@@ -219,45 +185,6 @@ int main(int argc,char **argv)
         ROS_ERROR("Failed to enable inertial unit.");
         return 1;
     }
-
-    // enable acceleration
-    // ros::ServiceClient set_acc_client;
-    // webots_ros::set_int acc_srv;
-    // ros::Subscriber sub_acc;
-    // set_acc_client = n->serviceClient<webots_ros::set_int>("volcano/accelerometer/enable");
-    // acc_srv.request.value = TIME_STEP;
-    // if (set_acc_client.call(acc_srv) && acc_srv.response.success) {
-    //     sub_acc = n->subscribe("volcano/accelerometer/values", 1, AccCallback);
-    //     while (sub_acc.getNumPublishers() == 0) {
-    //     }
-    //     ROS_INFO("Inertial unit enabled.");
-    // } else {
-    //     if (!inertial_unit_srv.response.success)
-    //     ROS_ERROR("Sampling period is not valid.");
-    //     ROS_ERROR("Failed to enable inertial unit.");
-    //     return 1;
-    // }
-
-    // enable gyro
-    // ros::ServiceClient set_gyro_client;
-    // webots_ros::set_int gyro_srv;
-    // ros::Subscriber sub_gyro;
-    // set_gyro_client = n->serviceClient<webots_ros::set_int>("volcano/gyro/enable");
-    // gyro_srv.request.value = TIME_STEP;
-    // if (set_gyro_client.call(gyro_srv) && gyro_srv.response.success) {
-    //     sub_gyro = n->subscribe("volcano/gyro/values", 1, gyroCallback);
-    //     while (sub_gyro.getNumPublishers() == 0) {
-    //     }
-    //     ROS_INFO("Inertial unit enabled.");
-    // } else {
-    //     if (!inertial_unit_srv.response.success)
-    //     ROS_ERROR("Sampling period is not valid.");
-    //     ROS_ERROR("Failed to enable inertial unit.");
-    //     return 1;
-    // }
-
-    
-
 
     ROS_INFO("You can now start the creation of the map using 'rosrun gmapping slam_gmapping "
             "scan:=/volcano/Sick_LMS_291/laser_scan/layer0 _xmax:=30 _xmin:=-30 _ymax:=30 _ymin:=-30 _delta:=0.2'.");
