@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="volanco">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.0079117 -0.0022664 0.08"
+        rpy="0 0 0" />
+      <mass
+        value="0.032" />
+      <inertia
+        ixx="6.8373E-06"
+        ixy="5.7397E-39"
+        ixz="1.0488E-21"
+        iyy="2.3733E-05"
+        iyz="8.3231E-23"
+        izz="1.7237E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://volcano_robotsim/rviz/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://volcano_robotsim/rviz/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="wheel1">
+    <inertial>
+      <origin
+        xyz="0 -0.0025 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.00265464579228337" />
+      <inertia
+        ixx="1.1768929679123E-07"
+        ixy="-4.76817283127017E-24"
+        ixz="-2.30791493760239E-39"
+        iyy="2.24317569447945E-07"
+        iyz="1.038047089733E-23"
+        izz="1.1768929679123E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://volcano_robotsim/rviz/meshes/wheel1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://volcano_robotsim/rviz/meshes/wheel1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel1"
+    type="continuous">
+    <origin
+      xyz="-0.034912 -0.047 -0.011266"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel1" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="wheel2">
+    <inertial>
+      <origin
+        xyz="0 -0.0025 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.00265464579228337" />
+      <inertia
+        ixx="1.1768929679123E-07"
+        ixy="-4.76817283127017E-24"
+        ixz="-2.30791493760239E-39"
+        iyy="2.24317569447945E-07"
+        iyz="1.038047089733E-23"
+        izz="1.1768929679123E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://volcano_robotsim/rviz/meshes/wheel2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://volcano_robotsim/rviz/meshes/wheel2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel2"
+    type="continuous">
+    <origin
+      xyz="0.019088 -0.047 -0.011266"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel2" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="wheel3">
+    <inertial>
+      <origin
+        xyz="0 -0.00249999999999999 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.00265464579228338" />
+      <inertia
+        ixx="1.1768929679123E-07"
+        ixy="-4.76817283127017E-24"
+        ixz="-1.04557617051017E-39"
+        iyy="2.24317569447945E-07"
+        iyz="1.14833783807341E-23"
+        izz="1.1768929679123E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://volcano_robotsim/rviz/meshes/wheel3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://volcano_robotsim/rviz/meshes/wheel3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel3"
+    type="continuous">
+    <origin
+      xyz="-0.034912 -0.108 -0.011266"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel3" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="wheel4">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://volcano_robotsim/rviz/meshes/wheel4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://volcano_robotsim/rviz/meshes/wheel4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel4"
+    type="continuous">
+    <origin
+      xyz="0.019088 -0.108 -0.011266"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel4" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+</robot>

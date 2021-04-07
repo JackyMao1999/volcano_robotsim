@@ -10,7 +10,7 @@ ros::Publisher pub_goal;
 void goalCallback(const volcano_robotsim::VolcanoGoal::ConstPtr &value);
 
 int main(int argc, char **argv) {
-   
+    return 0;
     // create a node named 'volcano' on ROS network
     ros::init(argc, argv, "volcano_set_goal");
     n = new ros::NodeHandle;
@@ -27,7 +27,29 @@ void goalCallback(const volcano_robotsim::VolcanoGoal::ConstPtr &value){
     geometry_msgs::PoseStamped target_pose;
     target_pose.header.seq = 1;
     target_pose.header.frame_id = "map";
-    
+    /** 书籍分类区
+     * A 马克思主义、列宁主义、毛泽东思想、邓小平理论
+     * B 哲学、宗教
+     * C 社会科学总论
+     * D 政治、法律
+     * E 军事
+     * F 经济
+     * G 文化、科学、教育、体育
+     * H 语言、文字
+     * T 工业技术
+     * TB 一般工业技术
+     * TD 矿业工程
+     * TE 石油、天然气工业
+     * TF 冶金工业
+     * TG 金属学与金属工艺
+     * TH 机械、仪表工业
+     * TJ 武器工业
+     * TK 能源与动力工程
+     * TL 电子能技术
+     * TM 电工技术
+     * TN 光线电电子学、电信技术
+     */
+
     if (goal_name == "A"||goal_name == "B")
     {
         target_pose.pose.position.x = -2.0;

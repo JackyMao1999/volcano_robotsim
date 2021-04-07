@@ -22,6 +22,8 @@ find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs sensor_msgs messag
 ## Generate messages in the 'msg' folder
   add_message_files(
     FILES 
+    VolcanoGoal.msg
+    TencentStamped.msg
     BoolStamped.msg
     Float64Stamped.msg
     Int32Stamped.msg
@@ -156,7 +158,7 @@ find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs sensor_msgs messag
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
+#   INCLUDE_DIRS include
 #  LIBRARIES webots_ros
    CATKIN_DEPENDS roscpp rospy std_msgs sensor_msgs message_runtime tf
 #  DEPENDS system_lib
@@ -204,10 +206,13 @@ add_executable(volcano_set_goals src/volcano_set_goals.cpp)
 add_dependencies(volcano_set_goals webots_ros_generate_messages_cpp)
 target_link_libraries(volcano_set_goals	${catkin_LIBRARIES})
 
-# add_executable(pointcloud src/pointcloud.cpp)
-# add_dependencies(pointcloud webots_ros_generate_messages_cpp)
-# target_link_libraries(pointcloud	${catkin_LIBRARIES})
+catkin_install_python(PROGRAMS scripts/robot_vision.py 
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 
+catkin_install_python(PROGRAMS scripts/qt_gui/qt_gui_node.py 
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 
 #############
 ## Install ##

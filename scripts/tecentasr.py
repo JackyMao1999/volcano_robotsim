@@ -62,9 +62,10 @@ def send_data_to_tencentcloud():
 
 # 从腾讯云返回的数据获取需要的数据
 def get_data_from_tencentcloud(resp):
-    print(resp) 
+    #print(resp) 
     js_res = json.loads(resp)
-    return result
+    print(js_res["Result"])
+    return js_res["Result"]
 
 # 使用pocketsphinx实现语音唤醒
 def wake_up():

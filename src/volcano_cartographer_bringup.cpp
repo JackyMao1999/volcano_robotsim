@@ -76,16 +76,11 @@ void broadcastTransform()
 {
     static tf::TransformBroadcaster br;
     tf::Transform transform;
-    // transform.setOrigin(tf::Vector3(1,1,0));
-    //transform.setOrigin(tf::Vector3(GPSvalues[0]-GPSvalues[2],GPSvalues[1]-GPSvalues[3],0));
-    // tf::Quaternion q(Inertialvalues[0],Inertialvalues[1],Inertialvalues[2],Inertialvalues[3]);
     tf::Quaternion q(Inertialvalues[0],Inertialvalues[2],Inertialvalues[1],-Inertialvalues[3]);
     transform.setRotation(q);
     br.sendTransform(tf::StampedTransform(transform,ros::Time::now(),"odom","base_link"));
     transform.setIdentity();
     br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "base_link", "volcano/Sick_LMS_291"));
-    // br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "base_link", "volcano/inertial_unit"));
-    // br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "base_link", "volcano/gps"));
 }
 
 void send_odom_data()
