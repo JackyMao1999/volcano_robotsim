@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<launch>
+
+  <node name="volcano_gmapping_bringup" pkg="volcano_robotsim" type="volcano_gmapping_bringup" />
+
+  <!-- Run the RVIZ -->
+  <!-- <arg name="model" />
+  <arg name="gui" default="false" />
+  <param name="robot_description" textfile="$(find volcano_robotsim)/rviz/model.urdf" />
+  <param name="use_gui" value="$(arg gui)" />
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" /> -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find volcano_robotsim)/rviz/volcano_teb.rviz" />
+
+  <!-- Map server -->
+  <arg name="map_file" default="$(find volcano_robotsim)/config/gmapping_map.yaml"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+  <!-- Localization-->
+  <node pkg="amcl" type="amcl" name="amcl" output="screen">
+    <remap from="scan" to="/volcano/Sick_LMS_291/laser_scan/layer0"/>
+    <param name="odom_frame_id" value="odom"/>
+    <param name="odom_model_type" value="diff-corrected"/>
+    <param name="base_frame_id" value="base_link"/>
+    <param name="global_frame_id" value="map"/>
+    
+    <!--transform tolerance-->
+    <param name="transform_tolerance" value="0.9"/>
+    
+    <!--overall filter-->
+    <param name="min_particles" value="150"/>
+    <param name="max_particles" value="400"/>
+    <param name="initial_pose_x" value="0.0"/>
+    <param name="initial_pose_y" value="0.0"/>
+    <param name="updata_min_a" value="0.1"/>
+    <param name="update_min_d" value="0.25"/>
+    
+    <!--likelihood_field of laser-->
+    <param name="laser_min_range" value="1.0"/>
+    <param name="laser_max_range" value="25"/>
+    <param name="laser_max_beams" value="30"/>
+    <param name="laser_z_hit" value="0.95"/>
+    <param name="laser_z_rand" value="0.05"/>
+    
+    <!--Odometry-->
+    <param name="odom_model_type" value="diff"/>
+    <param name="odom_alpha1" value="0.2"/>
+    <param name="odom_alpha2" value="0.2"/>
+    <param name="odom_alpha3" value="0.2"/>
+    <param name="odom_alpha4" value="0.2"/>
+    
+  </node>
+  
+  <include file="$(find volcano_robotsim)/launch/move_base_teb.launch"/>
+
+
+</launch>

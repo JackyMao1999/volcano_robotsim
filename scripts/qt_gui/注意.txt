@@ -1,0 +1,4 @@
+webView 问题
+
+self.webView = QtWebEngineWidgets.QWebEngineView(self.gBox_book)
+from PyQt5 import QtWebEngineWidgets

@@ -20,7 +20,7 @@ global_costmap:
     
     cost_scaling_factor:  10.0  # exponential rate at which the obstacle cost drops off (default: 10)
     # 膨胀半径
-    inflation_radius:     0.50  # max. distance from an obstacle at which costs are incurred for planning paths.
+    inflation_radius:     0.4  # max. distance from an obstacle at which costs are incurred for planning paths.
 
 
 

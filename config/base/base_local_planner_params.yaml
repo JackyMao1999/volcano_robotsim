@@ -13,9 +13,9 @@ TrajectoryPlannerROS:
    min_vel_theta: -1.5
    min_in_place_vel_theta: 0.525
    escape_vel: -0.15
-   acc_lim_x: 2.0
+   acc_lim_x: 0.6
    acc_lim_y: 0.0  # zero for a differential drive robot
-   acc_lim_theta: 3.0
+   acc_lim_theta: 0.8
 
    holonomic_robot: false
    yaw_goal_tolerance: 0.75 # about -- degrees 目标位置的角度容忍度
@@ -39,5 +39,5 @@ TrajectoryPlannerROS:
    vx_samples: 25 # 线速度 采样点数量
    vy_samples: 0  # zero for a differential drive robot
    vtheta_samples: 50 # 角速度 采样点数量
-   dwa: false
+   dwa: true
    simple_attractor: false

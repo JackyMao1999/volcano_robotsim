@@ -1,127 +1,260 @@
-#include <signal.h>
-#include <std_msgs/String.h>
-#include <move_base_msgs/MoveBaseAction.h>
-#include <actionlib/client/simple_action_client.h>
+/**
+ * 在控制台中发送位置，自动导航 
+ */
+#include "string.h"
+#include "volcano_robotsim/VolcanoGoal.h" 
+#include "volcano_robotsim/VolcanoGuiInfo.h"
+#include "geometry_msgs/PoseStamped.h"
 #include "ros/ros.h"
-#include <geometry_msgs/Twist.h> 
-#include <webots_ros/set_float.h>
-#include <webots_ros/set_int.h>
-#include <webots_ros/Int32Stamped.h>
  
 using namespace std;
-
-#define TIME_STEP 32    //时钟
  
 ros::NodeHandle *n;
-
-static int controllerCount;
-static std::vector<std::string> controllerList; 
-
-ros::ServiceClient timeStepClient;          //时钟通讯客户端
-webots_ros::set_int timeStepSrv;            //时钟服务数据
-
-typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
-
-
-/*******************************************************
-* Function name ：controllerNameCallback
-* Description   ：控制器名回调函数，获取当前ROS存在的机器人控制器
-* Parameter     ：
-        @name   控制器名
-* Return        ：无
-**********************************************************/
-// catch names of the controllers availables on ROS network
-void controllerNameCallback(const std_msgs::String::ConstPtr &name) { 
-    controllerCount++; 
-    controllerList.push_back(name->data);//将控制器名加入到列表中
-    ROS_INFO("Controller #%d: %s.", controllerCount, controllerList.back().c_str());
-}
-
-
-/*******************************************************
-* Function name ：quit
-* Description   ：退出函数
-* Parameter     ：
-        @sig   信号
-* Return        ：无
-**********************************************************/
-void quit(int sig) {
-    ROS_INFO("User stopped the '/volcano' node.");
-    timeStepSrv.request.value = 0; 
-    timeStepClient.call(timeStepSrv); 
-    ros::shutdown();
-    exit(0);
-}
-
-
+ros::Publisher pub_goal;
+void goalCallback(const volcano_robotsim::VolcanoGoal::ConstPtr &value);
+void guigoalCallback(const volcano_robotsim::VolcanoGuiInfo::ConstPtr &value);
 int main(int argc, char **argv) {
-   
-    std::string controllerName;
     // create a node named 'volcano' on ROS network
-    ros::init(argc, argv, "volcano_set_goal", ros::init_options::AnonymousName);
+    ros::init(argc, argv, "volcano_set_goal");
     n = new ros::NodeHandle;
+    ros::Subscriber sub_goal;
+    ros::Subscriber sub_gui_goal;
+    sub_goal = n->subscribe("/volcano/goal",1,goalCallback);
+    sub_gui_goal = n->subscribe("/VolcanoGuiInfo",1,guigoalCallback);
 
-    signal(SIGINT, quit);
+    pub_goal = n->advertise<geometry_msgs::PoseStamped>("/move_base_simple/goal",2);
+    ROS_INFO("Started success ");
+    ros::spin();
+}
 
-    // subscribe to the topic model_name to get the list of availables controllers
-    ros::Subscriber nameSub = n->subscribe("model_name", 100, controllerNameCallback);
-    while (controllerCount == 0 || controllerCount < nameSub.getNumPublishers()) {
-        ros::spinOnce();
-        ros::spinOnce();
-        ros::spinOnce();
-    }
-    ros::spinOnce();
-
-    timeStepClient = n->serviceClient<webots_ros::set_int>("volcano/robot/time_step");
-    timeStepSrv.request.value = TIME_STEP;
-
-    // if there is more than one controller available, it let the user choose
-    if (controllerCount == 1)
-        controllerName = controllerList[0];
-    else {
-        int wantedController = 0;
-        std::cout << "Choose the # of the controller you want to use:\n";
-        std::cin >> wantedController;
-        if (1 <= wantedController && wantedController <= controllerCount)
-        controllerName = controllerList[wantedController - 1];
-        else {
-        ROS_ERROR("Invalid number for controller choice.");
-        return 1;
+void go_2_book_goal(int build_type,string goal_name){
+    int isture=0;
+    geometry_msgs::PoseStamped target_pose;
+    target_pose.header.seq = 1;
+    target_pose.header.frame_id = "map";
+    /** 书籍分类区
+     * A 马克思主义、列宁主义、毛泽东思想、邓小平理论
+     * B 哲学、宗教
+     * C 社会科学总论
+     * D 政治、法律
+     * E 军事
+     * F 经济
+     * G 文化、科学、教育、体育
+     * H 语言、文字
+     * T 工业技术
+     * TB 一般工业技术
+     * TD 矿业工程
+     * TE 石油、天然气工业
+     * TF 冶金工业
+     * TG 金属学与金属工艺
+     * TH 机械、仪表工业
+     * TJ 武器工业
+     * TK 能源与动力工程
+     * TL 电子能技术
+     * TM 电工技术
+     * TN 光线电电子学、电信技术
+     */
+    
+    // build_type == 1 -> gmapping 建图
+    // build_type == 0 -> cartographer 建图
+    if (build_type)
+    {
+        if (goal_name == "A"||goal_name == "B")
+        {
+            target_pose.pose.position.x = -2.0;
+            target_pose.pose.position.y = 6.29;
+            target_pose.pose.orientation.z = 0.0016;
+            target_pose.pose.orientation.w = 0.9999;
+            isture = 1;
+        }else if(goal_name == "C"||goal_name == "D")
+        {
+            target_pose.pose.position.x = -2.0;
+            target_pose.pose.position.y = 3.7;
+            target_pose.pose.orientation.z = 0.0016;
+            target_pose.pose.orientation.w = 0.9999;
+            isture = 1;
+        }else if (goal_name == "E"||goal_name == "F")
+        {
+            target_pose.pose.position.x = -2.0;
+            target_pose.pose.position.y = 1.21;
+            target_pose.pose.orientation.z = 0.0016;
+            target_pose.pose.orientation.w = 0.9999;
+            isture = 1;
+        }else if (goal_name == "G"||goal_name == "H")
+        {
+            target_pose.pose.position.x = -2.0;
+            target_pose.pose.position.y = -1.21;
+            target_pose.pose.orientation.z = 0.0016;
+            target_pose.pose.orientation.w = 0.9999;
+            isture = 1;
+        }else if (goal_name == "T"||goal_name == "TB"||goal_name == "TD")
+        {
+            target_pose.pose.position.x = -7.0;
+            target_pose.pose.position.y = 5.95;
+            target_pose.pose.orientation.z = 0.9999;
+            target_pose.pose.orientation.w = 0.0028;
+            isture = 1;
+        }else if (goal_name == "TE"||goal_name == "TF"||goal_name == "TG")
+        {
+            target_pose.pose.position.x = -7.0;
+            target_pose.pose.position.y = 3.6;
+            target_pose.pose.orientation.z = 0.9999;
+            target_pose.pose.orientation.w = 0.0028;
+            isture = 1;
+        }else if (goal_name == "TH"||goal_name == "TJ"||goal_name == "TK")
+        {
+            target_pose.pose.position.x = -7.0;
+            target_pose.pose.position.y = 1.11;
+            target_pose.pose.orientation.z = 0.9999;
+            target_pose.pose.orientation.w = 0.0028;
+            isture = 1;
+        }else if (goal_name == "TL"||goal_name == "TM"||goal_name == "TN")
+        {
+            target_pose.pose.position.x = -7.0;
+            target_pose.pose.position.y = -1.19;
+            target_pose.pose.orientation.z = 0.9999;
+            target_pose.pose.orientation.w = 0.0028;
+            isture = 1;
         }
     }
-    ROS_INFO("Using controller: '%s'", controllerName.c_str());
-    // leave topic once it is not necessary anymore
-    nameSub.shutdown();
-
-    
-    //tell the action client that we want to spin a thread by default
-    MoveBaseClient ac("move_base", true);
-    
-    //wait for the action server to come up
-    while(!ac.waitForServer(ros::Duration(5.0))){
-        ROS_INFO("Waiting for the move_base action server to come up");
+    else
+    {
+        if (goal_name == "A"||goal_name == "B")
+        {
+            target_pose.pose.position.x = 10.0444;
+            target_pose.pose.position.y = -7.0554;
+            target_pose.pose.orientation.z = -0.7071;
+            target_pose.pose.orientation.w = 0.7071;
+            isture = 1;
+        }else if(goal_name == "C"||goal_name == "D")
+        {
+            target_pose.pose.position.x = 7.5803;
+            target_pose.pose.position.y = -7.0233;
+            target_pose.pose.orientation.z = -0.7071;
+            target_pose.pose.orientation.w = 0.7071;
+            isture = 1;
+        }else if (goal_name == "E"||goal_name == "F")
+        {
+            target_pose.pose.position.x = 5.379;
+            target_pose.pose.position.y = -7.0233;
+            target_pose.pose.orientation.z = -0.7071;
+            target_pose.pose.orientation.w = 0.7071;
+            isture = 1;
+        }else if (goal_name == "G"||goal_name == "H")
+        {
+            target_pose.pose.position.x = 2.8888;
+            target_pose.pose.position.y = -7.0233;
+            target_pose.pose.orientation.z = -0.7071;
+            target_pose.pose.orientation.w = 0.7071;
+            isture = 1;
+        }else if (goal_name == "T"||goal_name == "TB"||goal_name == "TD")
+        {
+            target_pose.pose.position.x = 10.0743;
+            target_pose.pose.position.y = -0.2492;
+            target_pose.pose.orientation.z = 0.7071;
+            target_pose.pose.orientation.w = 0.7071;
+            isture = 1;
+        }else if (goal_name == "TE"||goal_name == "TF"||goal_name == "TG")
+        {
+            target_pose.pose.position.x = 7.414499282836914;
+            target_pose.pose.position.y = -0.2492;
+            target_pose.pose.orientation.z = 0.7071;
+            target_pose.pose.orientation.w = 0.7071;
+            isture = 1;
+        }else if (goal_name == "TH"||goal_name == "TJ"||goal_name == "TK")
+        {
+            target_pose.pose.position.x = 4.8435;
+            target_pose.pose.position.y = -0.2492;
+            target_pose.pose.orientation.z = 0.7071;
+            target_pose.pose.orientation.w = 0.7071;
+            isture = 1;
+        }else if (goal_name == "TL"||goal_name == "TM"||goal_name == "TN")
+        {
+            target_pose.pose.position.x = 2.8118;
+            target_pose.pose.position.y = -0.2492;
+            target_pose.pose.orientation.z = 0.7071;
+            target_pose.pose.orientation.w = 0.7071;
+            isture = 1;
+        }
     }
 
-    move_base_msgs::MoveBaseGoal goal;
-
-    //we'll send a goal to the robot to move 1 meter forward
-    goal.target_pose.header.frame_id = "map";
-    goal.target_pose.header.stamp = ros::Time::now();
-
-    goal.target_pose.pose.position.x = 1.0;
-    goal.target_pose.pose.position.y = 1.0;
-    goal.target_pose.pose.position.z = 0.0;
-    goal.target_pose.pose.orientation.w = 1.0;
-    
-    ROS_INFO("Sending goal");
-    ac.sendGoal(goal);
-    
-    ac.waitForResult();
-    
-    if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
-        ROS_INFO("Hooray, the base moved 1 meter forward");
+    if (isture)
+    {
+        target_pose.header.stamp = ros::Time::now();
+        pub_goal.publish(target_pose);
+        ROS_INFO("Ready to go to the goal %s",goal_name.c_str());
+    }
     else
-        ROS_INFO("The base failed to move forward 1 meter for some reason");
+    {
+        ROS_ERROR("Can't compare the goal");
+    }
+}
 
-    return 0;
+void go_2_seat_goal(int seat_number){
+    int isture=0;
+    geometry_msgs::PoseStamped target_pose;
+    target_pose.header.seq = 1;
+    target_pose.header.frame_id = "map";
+    if (seat_number <= 4 && seat_number >= 1){
+        target_pose.pose.position.x = 1.8401894569396973;
+        target_pose.pose.position.y = 12.73941421508789;
+        target_pose.pose.orientation.z = 0.0014486014433241633;
+        target_pose.pose.orientation.w = 0.9999989507763788;
+        isture = 1;
+    }
+    else if (seat_number <= 8 && seat_number >= 5){
+        target_pose.pose.position.x = 1.7912073135375977;
+        target_pose.pose.position.y = 9.865933418273926;
+        target_pose.pose.orientation.z = 0.009064143268526342;
+        target_pose.pose.orientation.w = 0.9999589198096128;
+        isture = 1;
+    }
+    else if (seat_number <= 12 && seat_number >= 9){
+        target_pose.pose.position.x = -1.552984356880188;
+        target_pose.pose.position.y = 12.73941421508789;
+        target_pose.pose.orientation.z = 0.0014486014433241633;
+        target_pose.pose.orientation.w = 0.9999989507763788;
+        isture = 1;
+    }
+    if (isture)
+    {
+        target_pose.header.stamp = ros::Time::now();
+        pub_goal.publish(target_pose);
+        ROS_INFO("Ready to go to the seat %d",seat_number);
+    }
+    else
+    {
+        ROS_ERROR("Can't compare the goal");
+    }
+}
+
+/*
+    语音数据
+*/
+void goalCallback(const volcano_robotsim::VolcanoGoal::ConstPtr &value){
+    string goal_name = value->goal_name;
+    int build_type = value->build_type;
+    go_2_book_goal(build_type,goal_name);
+}
+
+/*
+    上位机数据
+*/
+void guigoalCallback(const volcano_robotsim::VolcanoGuiInfo::ConstPtr &value){
+    string book_number = value->book_number.substr(0,2);
+    int seat_number_on = value->seat_number_on;
+    int seat_number_off = value->seat_number_off;
+    int is_follow = value->is_follow;
+    if (is_follow)
+    {
+        go_2_book_goal(1,book_number);
+        is_follow = 0;
+    }
+    if (seat_number_on > 0)
+    {
+        go_2_seat_goal(seat_number_on);
+    }
+    
+    
+
 }

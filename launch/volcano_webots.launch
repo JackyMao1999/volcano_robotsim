@@ -8,13 +8,7 @@
     <arg name="mode" value="realtime"/>
     <arg name="no_gui" value="$(arg no_gui)"/>
     <arg name="world" value="$(find volcano_robotsim)/world/volcano_robot.wbt"/>
+    <!-- <arg name="world" value="$(find webots_ros)/worlds/pioneer3at.wbt"/> -->
   </include>
 
-
-  <!-- TF坐标变换，指定雷达与机器人旋转中心的位置关系 -->
-  <!-- <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser" args="0 -0.19 0.6 0 0 0 base_link volcano/Sick_LMS_291 100" /> --> -->
-  <!-- <node pkg="tf" type="static_transform_publisher" name="base_link_to_imu" args="0 0 0.3 0 0 0 base_link volcano/imu 100" /> -->
-  <!-- <node pkg="tf" type="static_transform_publisher" name="base_link_to_gps" args="0 0 0 0 0 0 base_link volcano/gps 100" /> -->
-
-  <!-- <include file="$(find volcano_robotsim)/launch/volcano_rviz.launch" ns="volcano_rviz"/> -->
 </launch>

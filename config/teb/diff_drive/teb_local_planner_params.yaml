@@ -5,7 +5,7 @@ TebLocalPlannerROS:
  # Trajectory
   
  teb_autosize: True
- dt_ref: 0.3
+ dt_ref: 0.6
  dt_hysteresis: 0.1
  max_samples: 500
  global_plan_overwrite_orientation: True
@@ -39,7 +39,7 @@ TebLocalPlannerROS:
     
  # Obstacles
     
- min_obstacle_dist: 0.33 # This value must also include our robot radius, since footprint_model is set to "point".
+ min_obstacle_dist: 0.6 # This value must also include our robot radius, since footprint_model is set to "point".
  inflation_dist: 0.6
  include_costmap_obstacles: True
  costmap_obstacles_behind_robot_dist: 1.5

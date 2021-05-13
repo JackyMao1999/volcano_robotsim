@@ -1,0 +1,1199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <author>JackyMao</author>
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>866</width>
+    <height>679</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>图书馆导航服务和书籍管理机器人系统平台</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="documentMode">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label_title">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>30</y>
+      <width>791</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>24</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>图书馆导航服务和书籍管理机器人系统平台</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>230</y>
+      <width>160</width>
+      <height>231</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QPushButton" name="btn_select">
+       <property name="text">
+        <string>位置选座</string>
+       </property>
+       <property name="default">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_book">
+       <property name="text">
+        <string>查找书籍</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_robot_state">
+       <property name="text">
+        <string>机器人状态</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_exit">
+       <property name="text">
+        <string>退出系统</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="label_time">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>100</y>
+      <width>271</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>17</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="gBox_location">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>160</y>
+      <width>671</width>
+      <height>511</height>
+     </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
+    <property name="tabletTracking">
+     <bool>false</bool>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="title">
+     <string>位置选座</string>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <widget class="QPushButton" name="btn_select_ok">
+     <property name="geometry">
+      <rect>
+       <x>560</x>
+       <y>440</y>
+       <width>111</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>确定</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_2">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>50</y>
+       <width>21</width>
+       <height>63</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QCheckBox" name="checkBox_1">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_2">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_3">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>50</y>
+       <width>21</width>
+       <height>63</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QCheckBox" name="checkBox_3">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_4">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>-1</x>
+       <y>30</y>
+       <width>681</width>
+       <height>481</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>../../../../volcano_robotsim/scripts/qt_gui/volcano_robot_map_1.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_4">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>130</y>
+       <width>21</width>
+       <height>63</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_4">
+      <item>
+       <widget class="QCheckBox" name="checkBox_5">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_6">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_5">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>130</y>
+       <width>21</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_5">
+      <item>
+       <widget class="QCheckBox" name="checkBox_7">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_8">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_6">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>50</y>
+       <width>21</width>
+       <height>63</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_6">
+      <item>
+       <widget class="QCheckBox" name="checkBox_9">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_10">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_7">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>50</y>
+       <width>21</width>
+       <height>63</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_7">
+      <item>
+       <widget class="QCheckBox" name="checkBox_11">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_12">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_8">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>130</y>
+       <width>21</width>
+       <height>63</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_8">
+      <item>
+       <widget class="QCheckBox" name="checkBox_13">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_14">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_9">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>130</y>
+       <width>21</width>
+       <height>63</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_9">
+      <item>
+       <widget class="QCheckBox" name="checkBox_15">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_16">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_10">
+     <property name="geometry">
+      <rect>
+       <x>470</x>
+       <y>40</y>
+       <width>112</width>
+       <height>171</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_10">
+      <item>
+       <widget class="QCheckBox" name="checkBox_17">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_18">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_11">
+     <property name="geometry">
+      <rect>
+       <x>550</x>
+       <y>40</y>
+       <width>112</width>
+       <height>171</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_11">
+      <item>
+       <widget class="QCheckBox" name="checkBox_19">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_20">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_12">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>80</y>
+       <width>112</width>
+       <height>95</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_12">
+      <item>
+       <widget class="QCheckBox" name="checkBox_21">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_22">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_23">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_24">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_13">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>200</y>
+       <width>21</width>
+       <height>95</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_13">
+      <item>
+       <widget class="QCheckBox" name="checkBox_25">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_26">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_27">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_28">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_14">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>310</y>
+       <width>21</width>
+       <height>95</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_14">
+      <item>
+       <widget class="QCheckBox" name="checkBox_29">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_30">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_31">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_32">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_5">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>200</y>
+       <width>231</width>
+       <height>29</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>索书号：T、TB、TD</string>
+     </property>
+     <property name="echoMode">
+      <enum>QLineEdit::Normal</enum>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_6">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>260</y>
+       <width>231</width>
+       <height>29</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>索书号：TE、TF、TG</string>
+     </property>
+     <property name="echoMode">
+      <enum>QLineEdit::Normal</enum>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_7">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>320</y>
+       <width>231</width>
+       <height>29</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>索书号：TH、TJ、TK</string>
+     </property>
+     <property name="echoMode">
+      <enum>QLineEdit::Normal</enum>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_8">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>380</y>
+       <width>231</width>
+       <height>29</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>索书号：TL、TM、TN</string>
+     </property>
+     <property name="echoMode">
+      <enum>QLineEdit::Normal</enum>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_15">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>180</y>
+       <width>160</width>
+       <height>241</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_15">
+      <item>
+       <widget class="QLineEdit" name="lineEdit_2">
+        <property name="text">
+         <string>索书号：A、B</string>
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Normal</enum>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit">
+        <property name="text">
+         <string>索书号：C、D</string>
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Normal</enum>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit_3">
+        <property name="text">
+         <string>索书号：E、F</string>
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Normal</enum>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit_4">
+        <property name="text">
+         <string>索书号：G、H</string>
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Normal</enum>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>90</y>
+       <width>41</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>24</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>❐</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>230</y>
+       <width>41</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>24</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>❐</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_8">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>350</y>
+       <width>41</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>24</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>❐</string>
+     </property>
+    </widget>
+    <zorder>label</zorder>
+    <zorder>btn_select_ok</zorder>
+    <zorder>verticalLayoutWidget_2</zorder>
+    <zorder>verticalLayoutWidget_3</zorder>
+    <zorder>verticalLayoutWidget_4</zorder>
+    <zorder>verticalLayoutWidget_5</zorder>
+    <zorder>verticalLayoutWidget_6</zorder>
+    <zorder>verticalLayoutWidget_7</zorder>
+    <zorder>verticalLayoutWidget_8</zorder>
+    <zorder>verticalLayoutWidget_9</zorder>
+    <zorder>verticalLayoutWidget_10</zorder>
+    <zorder>verticalLayoutWidget_11</zorder>
+    <zorder>verticalLayoutWidget_12</zorder>
+    <zorder>verticalLayoutWidget_13</zorder>
+    <zorder>verticalLayoutWidget_14</zorder>
+    <zorder>lineEdit_5</zorder>
+    <zorder>lineEdit_6</zorder>
+    <zorder>lineEdit_7</zorder>
+    <zorder>lineEdit_8</zorder>
+    <zorder>verticalLayoutWidget_15</zorder>
+    <zorder>label_3</zorder>
+    <zorder>label_6</zorder>
+    <zorder>label_8</zorder>
+   </widget>
+   <widget class="QGroupBox" name="gBox_book">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>160</y>
+      <width>671</width>
+      <height>511</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="title">
+     <string>查找书籍</string>
+    </property>
+    <widget class="QWidget" name="horizontalLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>16</x>
+       <y>30</y>
+       <width>631</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>索书号：</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit_book"/>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_robot">
+        <property name="text">
+         <string>机器人引导</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWebView" name="webView">
+     <property name="geometry">
+      <rect>
+       <x>9</x>
+       <y>89</y>
+       <width>651</width>
+       <height>411</height>
+      </rect>
+     </property>
+     <property name="url">
+      <url>
+       <string>http://p-8080.10.28.60.4.vpn.lib.cslg.edu.cn/opac/search_adv.php#/index</string>
+      </url>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="gBox_robot">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>160</y>
+      <width>671</width>
+      <height>511</height>
+     </rect>
+    </property>
+    <property name="tabletTracking">
+     <bool>false</bool>
+    </property>
+    <property name="acceptDrops">
+     <bool>false</bool>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="title">
+     <string>机器人状态</string>
+    </property>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>30</y>
+       <width>321</width>
+       <height>231</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>基础控制</string>
+     </property>
+     <widget class="QPushButton" name="btn_control_qj">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>30</y>
+        <width>91</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>前进</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_control_yz">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>70</y>
+        <width>91</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>右转</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_control_ht">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>110</y>
+        <width>91</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>后退</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_control_zz">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>70</y>
+        <width>91</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>左转</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_control_tz">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>70</y>
+        <width>91</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>停止</string>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="default">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QWidget" name="gridLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>150</y>
+        <width>301</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>线速度：</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>角速度:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QSlider" name="h_slider_linear">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QSlider" name="h_slider_angular">
+         <property name="maximum">
+          <number>99</number>
+         </property>
+         <property name="singleStep">
+          <number>1</number>
+         </property>
+         <property name="value">
+          <number>0</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="label_angular_val">
+         <property name="text">
+          <string>0.0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="label_linear_val">
+         <property name="text">
+          <string>0.0</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>260</y>
+       <width>321</width>
+       <height>241</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>GPS定位</string>
+     </property>
+     <widget class="QWidget" name="formLayoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>301</width>
+        <height>79</height>
+       </rect>
+      </property>
+      <layout class="QFormLayout" name="formLayout_2">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>Point.X:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLabel" name="label_point_x">
+         <property name="text">
+          <string>NA</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_9">
+         <property name="text">
+          <string>Point.Y:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="label_point_y">
+         <property name="text">
+          <string>NA</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_11">
+         <property name="text">
+          <string>Point.Z:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="label_point_z">
+         <property name="text">
+          <string>NA</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>321</width>
+       <height>231</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>视频</string>
+     </property>
+     <widget class="QGraphicsView" name="graphicsView">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>31</y>
+        <width>311</width>
+        <height>191</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="label_class">
+    <property name="geometry">
+     <rect>
+      <x>111</x>
+      <y>91</y>
+      <width>334</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>电气工程及其自动化(单招)171</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_name">
+    <property name="geometry">
+     <rect>
+      <x>111</x>
+      <y>124</y>
+      <width>334</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>毛成凯</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <zorder>label_title</zorder>
+   <zorder>verticalLayoutWidget</zorder>
+   <zorder>label_time</zorder>
+   <zorder>label_class</zorder>
+   <zorder>label_name</zorder>
+   <zorder>gBox_book</zorder>
+   <zorder>gBox_location</zorder>
+   <zorder>gBox_robot</zorder>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QWebView</class>
+   <extends>QWidget</extends>
+   <header location="global">QtWebKitWidgets/QWebView</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>btn_exit</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>778</x>
+     <y>443</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>622</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
