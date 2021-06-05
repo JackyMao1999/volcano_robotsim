@@ -105,6 +105,12 @@ rosrun volcano_robotsim volcano_velocity_v3
 rosrun volcano_robotsim tecentasr
 ```
 ## 8.ROS联合QT上位机
+8.1 部署volcano_robotsim功能包
+``` shell
+$ cd ~/volcano_ws/src
+$ git clone https://github.com/JackyMao1999/robomap.git
+```
+编译后使用
 ```shell
 rosrun robomap qt_gui_node 
 ```
