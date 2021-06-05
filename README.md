@@ -3,6 +3,7 @@ ROS package for Webots R2021a
 
 ## 注意点
 1. volcano_robotsim 功能包，适用于R2020 ver1版本的webots使用。
+2. 前提是要先配置好webots
 
 ## 1.创建工作空间
 ```shell
