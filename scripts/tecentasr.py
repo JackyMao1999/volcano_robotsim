@@ -33,7 +33,7 @@ def write_file_data(filepath,audio):
 def send_data_to_tencentcloud():
     result = ""
     try: 
-        cred = credential.Credential("AKIDABGPJz9caIo69zFHo46rOhkXdXAX9XS8", "gi3AzhO0LPK1XmjS1NVTDiphMxyjIemh") 
+        cred = credential.Credential("", "") 
         httpProfile = HttpProfile()
         httpProfile.endpoint = "asr.tencentcloudapi.com"
 
