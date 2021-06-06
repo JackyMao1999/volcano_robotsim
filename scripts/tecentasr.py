@@ -14,8 +14,8 @@ from tencentcloud.common.profile.http_profile import HttpProfile
 from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
 from tencentcloud.asr.v20190614 import asr_client, models as  asr_models
 from tencentcloud.nlp.v20190408 import nlp_client, models as  nlp_models
-SecretId = ""
-SecretKey = ""
+SecretId = "AKIDABGPJz9caIo69zFHo46rOhkXdXAX9XS8"
+SecretKey = "gi3AzhO0LPK1XmjS1NVTDiphMxyjIemh"
 
 # 获取语音数据
 def get_file_content(filepath):

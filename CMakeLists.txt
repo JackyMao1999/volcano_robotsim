@@ -21,7 +21,10 @@ find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs sensor_msgs messag
 
 ## Generate messages in the 'msg' folder
   add_message_files(
-    FILES
+    FILES 
+    VolcanoGoal.msg
+    VolcanoGuiInfo.msg
+    TencentStamped.msg
     BoolStamped.msg
     Float64Stamped.msg
     Int32Stamped.msg
@@ -93,6 +96,7 @@ find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs sensor_msgs messag
     node_add_force_with_offset.srv
     node_get_center_of_mass.srv
     node_get_contact_point.srv
+    node_get_contact_point_node.srv
     node_get_field.srv
     node_get_id.srv
     node_get_number_of_contact_points.srv
@@ -131,6 +135,7 @@ find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs sensor_msgs messag
     speaker_play_sound.srv
     supervisor_get_from_def.srv
     supervisor_get_from_id.srv
+    supervisor_get_from_string.srv
     supervisor_movie_start_recording.srv
     supervisor_set_label.srv
     supervisor_virtual_reality_headset_get_orientation.srv
@@ -154,7 +159,7 @@ find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs sensor_msgs messag
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-  INCLUDE_DIRS include
+#   INCLUDE_DIRS include
 #  LIBRARIES webots_ros
    CATKIN_DEPENDS roscpp rospy std_msgs sensor_msgs message_runtime tf
 #  DEPENDS system_lib
@@ -165,7 +170,6 @@ catkin_package(
 ###########
 
 include_directories(
-  
   ${catkin_INCLUDE_DIRS}
 )
 
@@ -190,9 +194,9 @@ add_executable(volcano_velocity_v3 src/volcano_velocity_v3.cpp)
 add_dependencies(volcano_velocity_v3 webots_ros_generate_messages_cpp)
 target_link_libraries(volcano_velocity_v3	${catkin_LIBRARIES})
 
-add_executable(volcano_base_bringup src/volcano_base_bringup.cpp)
-add_dependencies(volcano_base_bringup webots_ros_generate_messages_cpp)
-target_link_libraries(volcano_base_bringup	${catkin_LIBRARIES})
+add_executable(volcano_gmapping_bringup src/volcano_gmapping_bringup.cpp)
+add_dependencies(volcano_gmapping_bringup webots_ros_generate_messages_cpp)
+target_link_libraries(volcano_gmapping_bringup	${catkin_LIBRARIES})
 
 add_executable(volcano_cartographer_bringup src/volcano_cartographer_bringup.cpp)
 add_dependencies(volcano_cartographer_bringup webots_ros_generate_messages_cpp)
@@ -202,10 +206,13 @@ add_executable(volcano_set_goals src/volcano_set_goals.cpp)
 add_dependencies(volcano_set_goals webots_ros_generate_messages_cpp)
 target_link_libraries(volcano_set_goals	${catkin_LIBRARIES})
 
-# add_executable(pointcloud src/pointcloud.cpp)
-# add_dependencies(pointcloud webots_ros_generate_messages_cpp)
-# target_link_libraries(pointcloud	${catkin_LIBRARIES})
+catkin_install_python(PROGRAMS scripts/robot_vision.py 
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 
+catkin_install_python(PROGRAMS scripts/qt_gui/qt_gui_node.py 
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 
 #############
 ## Install ##

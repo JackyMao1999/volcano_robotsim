@@ -114,14 +114,14 @@ void keyboardDataCallback(const webots_ros::Int32Stamped::ConstPtr &value)
     switch (value->data)
     {
         case 314:
-            angular_temp-=0.1;
+            angular_temp+=0.1;
             break;
         case 315:
             linear_temp += 0.1;
 
             break;
         case 316:
-            angular_temp+=0.1;
+            angular_temp-=0.1;
 
             break;
         case 317:
