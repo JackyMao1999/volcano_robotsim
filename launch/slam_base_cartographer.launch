@@ -1,6 +1,7 @@
 <launch>
 
   <!-- bringup -->
+  <node name="volcano_velocity_v3" pkg="volcano_robotsim" type="volcano_velocity_v3" />
   <node name="volcano_cartographer_bringup" pkg="volcano_robotsim" type="volcano_cartographer_bringup" />
 
   <!-- Run the RVIZ -->
